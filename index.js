@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import TRIP from "./images/TRIP.png";
 
+// HEADER.............
 const Header = () => {
   return (
     <div className="header">
@@ -20,10 +21,32 @@ const Header = () => {
   );
 };
 
+// BODY.............
+
+const RestaurantCard = () => {
+  return (
+    <div className="res-card">
+      <h3>Maithili Foods</h3>
+    </div>
+  );
+};
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="Search"></div>
+      <div className="res-container">
+        <RestaurantCard />
+      </div>
+    </div>
+  );
+};
+
+// APP..............
 const App = () => {
   return (
     <div>
       <Header />
+      <Body />
     </div>
   );
 };

@@ -51,23 +51,31 @@
 
 
 .logo {
-    /* padding-left: 10px; */
-    width: 100px;
-    border-radius: 50px;
+    padding-left: 10px;
+    width: 150px;
+
 }
 
 .nav-items {
-    padding: 0 10px 0;
+    padding: 0 20px;
     width: auto;
+    display: flex;
+    align-items: center;
 }
 
 .nav-items>ul {
     list-style-type: none;
     display: flex;
+    font-size: 14px;
 }
 
 .nav-items>ul>li {
-    padding: 40px 10px 0 0;
+    padding: 10px;
     font-size: large;
     cursor: pointer;
+}
+
+.res-card {
+    width: 200px;
+    border: px solid black;
 }
