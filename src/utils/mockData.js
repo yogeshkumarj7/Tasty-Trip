@@ -1,49 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import TRIP from "./images/TRIP.png";
-
-// HEADER.............
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="logo-container">
-        <img className="logo" src={TRIP} alt="logo" />
-      </div>
-      <div className="nav-items">
-        <ul className="list">
-          <li>Home</li>
-          <li>About us</li>
-          <li>Contact us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-// BODY.............
-
-const RestaurantCard = (props) => {
-  const { resData } = props;
-  const { name, cuisines, costForTwo, avgRating, cloudinaryImageId } =
-    resData?.info;
-  return (
-    <div className="card">
-      <img
-        className="food-logo"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
-      ></img>
-      <h3>{name}</h3>
-      <h4>{cuisines}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{avgRating}</h4>
-    </div>
-  );
-};
-
 const resObj = [
   {
     info: {
@@ -1578,30 +1532,4 @@ const resObj = [
   },
 ];
 
-// Body...........................
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="Search"></div>
-      <div className="res-list">
-        {resObj.map((Restaurant) => (
-          <RestaurantCard key={Restaurant.info.id} resData={Restaurant} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// APP..............
-const App = () => {
-  return (
-    <div>
-      <Header />
-      <Body />
-    </div>
-  );
-};
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<App />);
+export default resObj;
