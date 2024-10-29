@@ -13,14 +13,14 @@ Tasty Trip is designed to be a user-friendly, visually appealing platform that l
 - **Order Tracking**: Real-time updates on order status (upcoming feature).
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Smooth Animations**: CSS animations for a pleasant browsing experience.
-- **Dynamic Cart**: Add and remove items from the cart effortlessly.
+
 
 ## 🚀 Technologies Used
 
 - **React.js**: Frontend library to manage the user interface and app state.
 - **HTML & CSS**: For creating a visually appealing, responsive layout.
 - **React Router**: Seamless navigation between pages.
-- **CSS Animations**: Enhancing user interactions with smooth transitions and animations.
+
 
 ## 🎯 How to Get Started
 
