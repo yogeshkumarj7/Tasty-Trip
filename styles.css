@@ -129,3 +129,10 @@
     margin-bottom: 10px;
 
 }
+
+.filter-btn {
+    margin: 10px;
+    padding: 3px;
+    cursor: pointer;
+    font-size: large;
+}
