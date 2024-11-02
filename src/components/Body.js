@@ -1,9 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { RES_API_URL } from "../utils/constants";
+import { Loading } from "./Loading";
 const Body = () => {
   const [resList, setresList] = useState([]);
-  // console.log(resList);
 
   useEffect(() => {
     fetchData();
@@ -14,15 +14,14 @@ const Body = () => {
     const jsonData = await data.json();
     console.log(jsonData);
     setresList(
-      jsonData.data.cards[2].card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[1].card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   };
 
-  if (resList.length === 0) {
-    return <h1>Loading......</h1>;
-  }
-  return (
+  return resList.length === 0 ? (
+    <Loading />
+  ) : (
     <div className="body">
       <div className="filter">
         <button
