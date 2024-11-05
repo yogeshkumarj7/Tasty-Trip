@@ -35,6 +35,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// <button class="login-btn login">Login</button>
-// {/* <button class="login-btn logout">Logout</button>  */
