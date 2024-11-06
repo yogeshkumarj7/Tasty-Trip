@@ -4,24 +4,25 @@ import { RES_API_URL } from "../utils/constants";
 import { Loading } from "./Loading";
 const Body = () => {
   const [resList, setresList] = useState([]);
-
+  const [searchedResList, setSearchedResList] = useState([]);
   const [searchText, setSearchText] = useState("");
   useEffect(() => {
     fetchData();
   }, []);
-
   const fetchData = async () => {
     const data = await fetch(RES_API_URL);
     const jsonData = await data.json();
     console.log(jsonData);
 
     setresList(
-      jsonData?.data?.cards[2].card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[1].card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    // console.log(resList[2].info.name);
+    setSearchedResList(
+      jsonData?.data?.cards[1].card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
-
   return resList.length === 0 ? (
     <Loading />
   ) : (
@@ -41,10 +42,12 @@ const Body = () => {
           <button
             className="search-btn"
             onClick={() => {
-              const searchedRes = resList.filter((res) =>
-                res.info.name.includes(searchText)
-              );
-              setresList(searchedRes);
+              const searchedRes = resList.filter((res) => {
+                return res.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              setSearchedResList(searchedRes);
             }}
           >
             Search
@@ -58,7 +61,7 @@ const Body = () => {
             const filteredList = resList.filter(
               (res) => res.info.avgRating > 4.3
             );
-            setresList(filteredList);
+            setSearchedResList(filteredList);
           }}
         >
           Top Rated Restaurant
@@ -67,7 +70,7 @@ const Body = () => {
 
       {/* Restaurant List */}
       <div className="res-list">
-        {resList.map((Restaurant) => (
+        {searchedResList.map((Restaurant) => (
           <RestaurantCard key={Restaurant.info.id} resData={Restaurant} />
         ))}
       </div>
