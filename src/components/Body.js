@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { RES_API_URL } from "../utils/constants";
 import { Loading } from "./Loading";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [resList, setresList] = useState([]);
   const [searchedResList, setSearchedResList] = useState([]);
@@ -12,7 +13,7 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(RES_API_URL);
     const jsonData = await data.json();
-    console.log(jsonData);
+    // console.log(jsonData);
 
     setresList(
       jsonData?.data?.cards[1].card?.card?.gridElements?.infoWithStyle
@@ -71,7 +72,12 @@ const Body = () => {
       {/* Restaurant List */}
       <div className="res-list">
         {searchedResList.map((Restaurant) => (
-          <RestaurantCard key={Restaurant.info.id} resData={Restaurant} />
+          <Link
+            to={"/restaurant/" + Restaurant.info.id}
+            key={Restaurant.info.id}
+          >
+            <RestaurantCard resData={Restaurant} />
+          </Link>
         ))}
       </div>
     </div>
