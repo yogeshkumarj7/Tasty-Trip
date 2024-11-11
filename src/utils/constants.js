@@ -6,3 +6,5 @@ export const RES_API_URL =
 
 export const RES_API_URL_1 =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.990088&lng=75.7531324&restaurantId=";
+
+export const GITHUB_USER_API = "https://api.github.com/users/yogeshkumarj7";
