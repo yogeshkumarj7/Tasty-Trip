@@ -33,37 +33,36 @@ const Body = () => {
   return resList.length === 0 ? (
     <Loading />
   ) : (
-    <div className="body">
+    <div className="body-container">
       {/* Filter and search box */}
-      <div className="filter">
-        <div className="search-res">
-          <input
-            type="search-inp"
-            placeholder="Enter the Restaurant name"
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          ></input>
+      <div className="my-[110px] mx-auto mb-[20px] flex justify-center items-center w-full">
+        <input
+          type="search-inp"
+          className="w-[30rem] box-border rounded-l-md bg-white shadow-[1px_2px_4px_0_rgba(0,0,0,0.08)] p-[8px_15px_8px_12px] border border-[#aabcca] border-r-0 text-[var(--text-color)] outline-none text-lg font-medium"
+          placeholder="Enter the Restaurant name"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        ></input>
 
-          <button
-            className="search-btn"
-            onClick={() => {
-              const searchedRes = resList.filter((res) => {
-                return res.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase());
-              });
-              setSearchedResList(searchedRes);
-            }}
-          >
-            Search
-          </button>
-        </div>
+        <button
+          className="search-btn rounded-r-md bg-black shadow-[1px_2px_4px_0_rgba(0,0,0,0.08)] text-white p-[12px_22px] -ml-[4px] cursor-pointer border-0 outline-none "
+          onClick={() => {
+            const searchedRes = resList.filter((res) => {
+              return res.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase());
+            });
+            setSearchedResList(searchedRes);
+          }}
+        >
+          Search
+        </button>
 
         {/* Top Restaurant Filter Button */}
         <button
-          className="filter-btn"
+          className="filter-btn ml-2 rounded-md bg-black shadow-[1px_2px_4px_0_rgba(0,0,0,0.08)] text-white p-[12px_22px] -ml-[4px] cursor-pointer border-0 outline-none"
           onClick={() => {
             const filteredList = resList.filter(
               (res) => res.info.avgRating > 4.3
@@ -71,12 +70,12 @@ const Body = () => {
             setSearchedResList(filteredList);
           }}
         >
-          Top Rated Restaurant
+          Top
         </button>
       </div>
 
       {/* Restaurant List */}
-      <div className="res-list">
+      <div className="flex flex-wrap items-center justify-center self-stretch  p-6 m-4 border-2 border-black-300 rounded-lg">
         {searchedResList.map((Restaurant) => (
           <Link
             to={"/restaurant/" + Restaurant.info.id}
