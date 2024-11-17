@@ -6,7 +6,7 @@ const Header = () => {
   const [loginbtn, setLoginbtn] = useState("Login");
   const onlineStstus = useOnlineStatus();
   return (
-    <div className="flex justify-between items-center w-screen h-[80px] bg-[var(--header-bg-color)] rounded-[5px] shadow-[rgba(0,_0,_0,_0.61)_-2px_7px_5px_-6px] text-[var(--light-text-color)] font-bold fixed top-0 left-0 z-[999] overflow-y-hidden">
+    <div className="flex z-10 justify-between items-center w-screen h-[80px] bg-[var(--header-bg-color)] rounded-[5px] shadow-[rgba(0,_0,_0,_0.61)_-2px_7px_5px_-6px] text-[var(--light-text-color)] font-bold fixed top-0 left-0 z-[999] overflow-y-hidden">
       {/* Logo section */}
       <div className="logo-container flex justify-center items-center p-4">
         <Link to="/">
