@@ -15,6 +15,7 @@ const Body = () => {
     const data = await fetch(RES_API_URL);
     const jsonData = await data.json();
     console.log(jsonData);
+    console.log(jsonData?.data?.cards[4]);
 
     setresList(
       jsonData?.data?.cards[4].card?.card?.gridElements?.infoWithStyle
@@ -24,6 +25,7 @@ const Body = () => {
       jsonData?.data?.cards[4].card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    console.log(resList);
   };
 
   const onlineStatus = useOnlineStatus();
