@@ -6,12 +6,12 @@ const Header = () => {
   const [loginbtn, setLoginbtn] = useState("Login");
   const onlineStstus = useOnlineStatus();
   return (
-    <div className="flex z-10 justify-between items-center w-screen h-[80px] bg-[var(--header-bg-color)] rounded-[5px] shadow-[rgba(0,_0,_0,_0.61)_-2px_7px_5px_-6px] text-[var(--light-text-color)] font-bold fixed top-0 left-0 z-[999] overflow-y-hidden">
+    <div className="sticky bg-white top-0 flex justify-between items-center w-full h-[80px]  rounded-[5px] shadow-[rgba(0,_0,_0,_0.61)_-2px_7px_5px_-6px] text-[var(--light-text-color)] font-bold  left-0 z-20 overflow-y-hidden">
       {/* Logo section */}
-      <div className="logo-container flex justify-center items-center p-4">
+      <div className="logo-container">
         <Link to="/">
           <img
-            className=" logo w-32 h-auto object-contain"
+            className="logo w-32 h-auto object-contain"
             src={TRIP}
             alt="logo"
           />
@@ -19,7 +19,7 @@ const Header = () => {
       </div>
       {/* Navigation section */}
       <div className="list-none flex items-center justify-between mr-[30px] ">
-        <ul className="flex space-x-6 p-10">
+        <ul className="flex gap-10 p-10">
           {/* <li>Online Status:{onlineStstus ? "Online" : "Offline"}</li> */}
           <li>
             <Link to="/">Home</Link>
@@ -30,7 +30,10 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
-          <li>Cart</li>
+          <li>
+            <i className="fa-solid fa-cart-shopping"></i>
+          </li>
+
           <button
             onClick={() => {
               loginbtn === "Login"
@@ -38,9 +41,9 @@ const Header = () => {
                 : setLoginbtn("Login");
               console.log(loginbtn);
             }}
-            className={
-              loginbtn == "Login" ? "login-btn login" : "login-btn logout"
-            }
+            className={`${
+              loginbtn === "Login" ? "bg-green-400" : "bg-red-400"
+            } text-white py-1 px-4 rounded transition-colors duration-300`}
           >
             {loginbtn}
           </button>
