@@ -15,17 +15,18 @@ const Body = () => {
     const data = await fetch(RES_API_URL);
     const jsonData = await data.json();
     console.log(jsonData);
-    console.log(jsonData?.data?.cards[4]);
+    // console.log(jsonData?.data?.cards[4]);
 
     setresList(
       jsonData?.data?.cards[4].card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setSearchedResList(
-      jsonData?.data?.cards[4].card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    console.log(resList);
+    // console.log(resList);
+    //4
   };
 
   const onlineStatus = useOnlineStatus();

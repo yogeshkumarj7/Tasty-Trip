@@ -21,7 +21,7 @@ const Header = () => {
       <div className="list-none flex items-center justify-between mr-[30px] ">
         <ul className="flex gap-10 p-10">
           {/* <li>Online Status:{onlineStstus ? "Online" : "Offline"}</li> */}
-          <li>
+          <li className="">
             <Link to="/">Home</Link>
           </li>
           <li>
