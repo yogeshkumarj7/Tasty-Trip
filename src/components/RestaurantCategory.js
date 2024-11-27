@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import CategoryList from "./CategoryList";
-const RestaurantCategory = ({ data }) => {
-  const [showResCategory, setShowResCategory] = useState(false);
+const RestaurantCategory = ({ data, showResCategory, setindextoShow }) => {
   const handleClickList = () => {
-    setShowResCategory(!showResCategory);
+    setindextoShow();
   };
 
   return (

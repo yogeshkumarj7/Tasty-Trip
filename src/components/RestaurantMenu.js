@@ -9,7 +9,7 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const menuData = useMenuData(resId);
-  // console.log(menuData);
+  const [indextoShow, setindextoShow] = useState(0);
   const { name, cuisines, id, costForTwo } =
     menuData?.cards[2]?.card?.card?.info || {};
   const filterCategories =
@@ -30,10 +30,12 @@ const RestaurantMenu = () => {
       <p className="text-gray-600 mb-6">{cuisines.join(" ,")}</p>
       {/* Categories Accordions */}
       <div className="space-y-6">
-        {filterCategories.map((category, key) => (
+        {filterCategories.map((category, index) => (
           <RestaurantCategory
             key={category?.card?.card.title}
             data={category?.card?.card}
+            showResCategory={index === indextoShow ? true : false}
+            setindextoShow={() => setindextoShow(index)}
           />
         ))}
       </div>
