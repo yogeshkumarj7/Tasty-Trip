@@ -15,7 +15,7 @@ const Body = () => {
     const data = await fetch(RES_API_URL);
     const jsonData = await data.json();
     console.log(jsonData);
-    // console.log(jsonData?.data?.cards[4]);
+    // console.log(jsonData?.data);
 
     setresList(
       jsonData?.data?.cards[4].card?.card?.gridElements?.infoWithStyle

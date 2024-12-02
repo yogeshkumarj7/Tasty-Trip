@@ -7,12 +7,16 @@ import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import Store from "./utils/store";
 const App = () => {
   return (
-    <div>
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={Store}> 
+      <div>
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 

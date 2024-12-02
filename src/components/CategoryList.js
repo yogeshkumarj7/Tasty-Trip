@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const CategoryList = ({ items = [] }) => {
   if (!Array.isArray(items) || items.length === 0) {
@@ -8,6 +10,12 @@ const CategoryList = ({ items = [] }) => {
       </div>
     );
   }
+
+  const dispatch = useDispatch(addItem());
+
+  const handleAddItems = () => {
+    dispatch(addItem());
+  };
 
   return (
     <div className="space-y-4 w-6/12 mx-auto">
@@ -71,6 +79,7 @@ const CategoryList = ({ items = [] }) => {
                         rounded-xl text-sm
                         hover:bg-green-600 transition-colors
                         shadow-md focus:outline-none"
+              onClick={handleAddItems}
             >
               Add
             </button>
