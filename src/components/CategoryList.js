@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 
-const CategoryList = ({ items = [] }) => {
+const CategoryList = ({ items }) => {
   if (!Array.isArray(items) || items.length === 0) {
     return (
       <div className="flex justify-center items-center h-64 text-gray-500">
@@ -13,8 +13,8 @@ const CategoryList = ({ items = [] }) => {
 
   const dispatch = useDispatch(addItem());
 
-  const handleAddItems = () => {
-    dispatch(addItem());
+  const handleAddItems = (item) => {
+    dispatch(addItem(item));
   };
 
   return (
@@ -79,7 +79,7 @@ const CategoryList = ({ items = [] }) => {
                         rounded-xl text-sm
                         hover:bg-green-600 transition-colors
                         shadow-md focus:outline-none"
-              onClick={handleAddItems}
+              onClick={() => handleAddItems(item)}
             >
               Add
             </button>

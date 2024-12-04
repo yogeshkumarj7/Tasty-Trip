@@ -3,6 +3,7 @@ import TRIP from "../../images/TRIP.png";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useSelector } from "react-redux";
+import Cart from "./Cart";
 const Header = () => {
   const [loginbtn, setLoginbtn] = useState("Login");
   const onlineStstus = useOnlineStatus();
@@ -24,7 +25,7 @@ const Header = () => {
       <div className="list-none flex items-center justify-between mr-[30px] ">
         <ul className="flex gap-10 p-10">
           <li>Online Status:{onlineStstus ? "Online" : "Offline"}</li>
-          <li className="">
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -33,8 +34,11 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+
           <li className="relative">
-            <i className="fa-solid fa-cart-shopping text-xl"></i>
+            <Link to="/cart">
+              <i className="fa-solid fa-cart-shopping text-xl"></i>
+            </Link>
             {cartItems.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                 {cartItems.length}
