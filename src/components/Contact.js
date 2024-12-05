@@ -9,7 +9,7 @@ const Contact = () => {
         backgroundImage: `url(${contactBackground})`,
         backgroundAttachment: "fixed",
         filter: "brightness(0.8)",
-      }}
+      }} 
     >
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full backdrop-blur-sm bg-opacity-90">
         <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">
