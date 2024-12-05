@@ -1,7 +1,7 @@
 import React from "react";
 import contactBackground from "../../images/contactbackground.jpg";
 
-const ContactUsPage = () => {
+const Contact = () => {
   return (
     <div
       className="flex justify-center items-center h-screen bg-cover bg-center bg-no-repeat"
@@ -43,4 +43,4 @@ const ContactUsPage = () => {
   );
 };
 
-export default ContactUsPage;
+export default Contact;
