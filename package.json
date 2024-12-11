@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "description": "React food ordering app...",
     "scripts": {
-        "test": "jest",
-        "start": "parcel index.html",
-        "build": "parcel build index.html"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html --public-url ./"
     },
     "repository": {
         "type": "git",
