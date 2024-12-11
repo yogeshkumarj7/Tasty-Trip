@@ -3,9 +3,8 @@ import TRIP from "../../images/TRIP.png";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useSelector } from "react-redux";
-import Cart from "./Cart";
+import Login from "./Login";
 const Header = () => {
-  const [loginbtn, setLoginbtn] = useState("Login");
   const onlineStstus = useOnlineStatus();
 
   const cartItems = useSelector((store) => store.cart.items);
@@ -24,7 +23,6 @@ const Header = () => {
       {/* Navigation section */}
       <div className="list-none flex items-center justify-between mr-[30px] ">
         <ul className="flex gap-10 p-10">
-          <li>Online Status:{onlineStstus ? "Online" : "Offline"}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -45,20 +43,9 @@ const Header = () => {
               </span>
             )}
           </li>
-
-          <button
-            onClick={() => {
-              loginbtn === "Login"
-                ? setLoginbtn("LogOut")
-                : setLoginbtn("Login");
-              console.log(loginbtn);
-            }}
-            className={`${
-              loginbtn === "Login" ? "bg-green-400" : "bg-red-400"
-            } text-white py-1 px-4 rounded transition-colors duration-300`}
-          >
-            {loginbtn}
-          </button>
+          <Link to="/login">
+            <Login />
+          </Link>
         </ul>
       </div>
     </div>
