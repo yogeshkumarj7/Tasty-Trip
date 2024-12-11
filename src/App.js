@@ -11,6 +11,8 @@ import { Provider } from "react-redux";
 import Store from "./utils/store";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
+import LoginForm from "./components/loginForm";
+
 const App = () => {
   return (
     <Provider store={Store}>
@@ -47,6 +49,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/login",
+        element: <LoginForm />,
       },
     ],
     errorElement: <Error />,
