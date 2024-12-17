@@ -8,10 +8,11 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { Provider } from "react-redux";
-import Store from "./utils/store";
+import Store from "./utils/Store";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import LoginForm from "./components/loginForm";
+import Payment from "./components/Payment";
 
 const App = () => {
   return (
@@ -53,6 +54,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
     errorElement: <Error />,

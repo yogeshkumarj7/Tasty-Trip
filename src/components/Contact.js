@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import contactBackground from "../../images/contactbackground.jpg";
+// import contactBackground from "../../images/contactbackground.jpg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
