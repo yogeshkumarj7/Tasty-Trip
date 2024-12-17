@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import Store from "./utils/Store";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
-import LoginForm from "./components/loginForm";
+import LoginForm from "./components/LoginForm";
 import Payment from "./components/Payment";
 
 const App = () => {
