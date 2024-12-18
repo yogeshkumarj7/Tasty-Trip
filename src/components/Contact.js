@@ -7,7 +7,7 @@ import {
   MessageSquareIcon,
   SendIcon,
   LoaderIcon,
-} from "lucide-react"; 
+} from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -67,10 +67,7 @@ const Contact = () => {
 
     if (validateForm()) {
       toast.success(
-        <div className="flex items-center">
-          
-          Message sent successfully!
-        </div>,
+        <div className="flex items-center">Message sent successfully!</div>,
         {
           position: "top-right",
           autoClose: 3000,
