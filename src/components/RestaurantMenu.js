@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-// import { RES_API_URL } from "../utils/constants";
-import { useEffect } from "react";
 import { Loading } from "./Loading";
-import { RES_API_URL_1 } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import useMenuData from "../utils/useMenuData";
 import RestaurantCategory from "./RestaurantCategory";
