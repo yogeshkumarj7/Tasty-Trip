@@ -172,7 +172,7 @@ const Contact = () => {
 
           {/* Submit Button */}
           <button
-            className="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-3 rounded-lg shadow-md transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center"
+            className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 rounded-lg shadow-md transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center"
             type="submit"
             disabled={isSubmitting}
           >

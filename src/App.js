@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { About } from "./components/About";
+import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
@@ -13,6 +13,7 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import Payment from "./components/Payment";
+import Developer from "./components/Developer";
 
 const App = () => {
   return (
@@ -58,6 +59,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/developer",
+        element: <Developer />,
       },
     ],
     errorElement: <Error />,
