@@ -41,7 +41,7 @@ const CategoryList = ({ items }) => {
             {/* Ratings and Count */}
             {item?.card?.info?.ratings?.aggregatedRating?.rating && (
               <div className="flex items-center mb-2">
-                <span className="text-yellow-500 font-semibold mr-2">
+                <span className="text-amber-500 font-semibold mr-2">
                   {item.card.info.ratings.aggregatedRating.rating} ★
                 </span>
                 <span className="text-gray-500 text-sm">

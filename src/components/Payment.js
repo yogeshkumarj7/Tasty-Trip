@@ -11,10 +11,9 @@ const Payment = () => {
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Initialize useDispatch for Redux actions
+  const dispatch = useDispatch();
 
   const handlePayment = () => {
-    // Check for valid card number (16 digits), expiry (MM/YY) format, and 3-digit CVV
     const cardNumberPattern = /^\d{16}$/;
     const expiryPattern = /^(0[1-9]|1[0-2])\/(\d{2})$/;
     const cvvPattern = /^\d{3}$/;
@@ -49,8 +48,8 @@ const Payment = () => {
       onClose: () => {
         setPaymentSuccess(true);
         setTimeout(() => {
-          dispatch(clearCart()); // Clear the cart using Redux action
-          navigate("/"); // Redirect to home after 2 seconds
+          dispatch(clearCart());
+          navigate("/");
         }, 2000);
       },
     });
@@ -120,7 +119,7 @@ const Payment = () => {
             </div>
             <button
               type="button"
-              className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition mt-4"
+              className="w-full bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition mt-4"
               onClick={handlePayment}
             >
               Pay Now
@@ -138,7 +137,7 @@ const Payment = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        className="mt-12" // Move the toaster below the navbar for better visibility
+        className="mt-20"
       />
     </div>
   );

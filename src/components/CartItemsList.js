@@ -45,7 +45,7 @@ const CartItemsList = ({ items }) => {
             <span className="font-bold">{item.quantity || 1}</span>
             <button
               onClick={() => dispatch(addItem(item))}
-              className="bg-blue-500 text-white px-2 py-1 rounded-full"
+              className="bg-amber-500 text-white px-2 py-1 rounded-full"
             >
               +
             </button>

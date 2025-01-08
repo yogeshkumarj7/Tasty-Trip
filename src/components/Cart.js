@@ -70,7 +70,7 @@ const Cart = () => {
             <span>₹{(calculateTotal() * 1.1 + 5).toFixed(2)}</span>
           </div>
           <button
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition mt-4"
+            className="w-full bg-teal-500 cursor-pointer text-white py-3 rounded-lg hover:bg-teal-700 transition mt-4"
             disabled={cartItems.length === 0}
             onClick={handleProceedToCheckout} // Call handleProceedToCheckout function
           >

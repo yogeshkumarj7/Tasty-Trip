@@ -153,19 +153,19 @@ const Body = () => {
     </div>
   ) : (
     <div className="p-4 max-w-7xl mx-auto">
-      <div className="mb-6 bg-white shadow-md rounded-lg p-4">
-        <div className="flex flex-wrap items-center space-x-4 space-y-2">
+      <div className="mb-6 bg-white shadow-md rounded-lg p-4 mt-5">
+        <div className="flex flex-wrap  items-center space-x-4 space-y-2">
           <input
             type="text"
             placeholder="Search restaurants..."
             value={searchText}
             onChange={handleSearch}
-            className="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+            className="flex-grow px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
           />
           <select
             value={cuisineFilter}
             onChange={handleCuisineFilter}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
           >
             <option value="">All Cuisines</option>
             {uniqueCuisines.map((cuisine) => (
@@ -177,7 +177,7 @@ const Body = () => {
           <select
             value={sortOption}
             onChange={(e) => handleSort(e.target.value)}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
           >
             <option value="">Sort By</option>
             <option value="name-asc">Name (A-Z)</option>

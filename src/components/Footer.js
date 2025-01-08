@@ -11,14 +11,16 @@ const Footer = () => {
           <div className="flex items-center space-x-4 text-gray-600">
             <a
               href="#privacy-policy"
-              className="hover:text-blue-600 transition-colors duration-300 text-sm"
+              className="hover:text-teal-500
+               transition-colors duration-300 text-sm"
             >
               Privacy Policy
             </a>
             <span className="text-gray-300">|</span>
             <a
               href="#terms-of-use"
-              className="hover:text-blue-600 transition-colors duration-300 text-sm"
+              className="hover:text-teal-500
+               transition-colors duration-300 text-sm"
             >
               Terms of Use
             </a>
@@ -27,14 +29,14 @@ const Footer = () => {
           {/* Middle Section - Branding and Credit */}
           <div className="text-center text-sm text-gray-700">
             <a href="https://github.com/yogeshkumarj7/Tasty-Trip">
-              <span className="font-semibold text-black">Tasty Trip</span>
+              <span className="font-semibold text-amber-500">Tasty Trip </span>
             </a>
             | Created & Designed by{" "}
             <a
               href="https://github.com/yogeshkumarj7"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 transition-colors duration-300 inline-flex items-center"
+              className="text-teal-600 hover:text-teal-900 font-bold transition-colors duration-300 inline-flex items-center"
             >
               YOGI
               <svg

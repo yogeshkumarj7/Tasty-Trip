@@ -7,9 +7,9 @@ import Login from "./Login";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartItems = useSelector((store) => store.cart.items);
+  const { isLoggedIn, username } = useSelector((state) => state.auth);
   const location = useLocation();
 
-  // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
@@ -21,10 +21,10 @@ const Header = () => {
   return (
     <div className="sticky top-0 bg-white shadow-lg z-50 w-full h-24 flex items-center justify-center">
       <div className="container mx-auto px-4 flex justify-between items-center relative">
-        {/* Logo section with increased size */}
+        {/* Logo section remains the same */}
         <Link
           to="/"
-          className="transition-transform duration-300 hover:scale-125 flex items-center"
+          className="transition-transform duration-300 flex items-center"
         >
           <img
             className="logo ml-6 object-contain"
@@ -38,7 +38,7 @@ const Header = () => {
           />
         </Link>
 
-        {/* Hamburger Menu for Mobile */}
+        {/* Hamburger Menu remains the same */}
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -53,13 +53,13 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Navigation section */}
+        {/* Updated Navigation section */}
         <nav
           className={`
-          fixed md:static 
+          fixed md:static
           top-0 left-0 right-0 bottom-0
           md:flex md:items-center
-          bg-white md:bg-transparent 
+          bg-white md:bg-transparent
           transform md:transform-none
           transition-transform duration-300 ease-in-out
           ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
@@ -68,100 +68,29 @@ const Header = () => {
           z-40
         `}
         >
-          <ul
-            className="flex flex-col md:flex-row 
-            space-y-6 md:space-y-0 
-            md:space-x-12 
-            items-center 
-            w-full md:w-auto 
-            h-full md:h-auto 
-            justify-center md:justify-end
-            p-8 md:p-0
-            relative
-            mr-5
-          "
-          >
-            {/* Navigation Items with Enhanced Hover Effects */}
+          <ul className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-12 items-center w-full md:w-auto h-full md:h-auto justify-center md:justify-end p-8 md:p-0 relative mr-5">
+            {/* Navigation Items remain the same */}
             {["Home", "About", "Contact"].map((item) => (
               <li key={item} className="nav-item">
                 <Link
                   to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="
-                    text-gray-800 
-                    relative 
-                    group 
-                    font-semibold 
-                    text-xl 
-                    md:text-base 
-                    transition-all 
-                    duration-300 
-                    ease-in-out
-                    hover:text-blue-600
-                  "
+                  className="text-gray-800 relative group font-semibold text-xl md:text-base transition-all duration-300 ease-in-out hover:text-teal-600"
                 >
                   {item}
-                  <span
-                    className="
-                    absolute 
-                    -bottom-1 
-                    left-0 
-                    w-0 
-                    h-0.5 
-                    bg-blue-600 
-                    group-hover:w-full 
-                    transition-all 
-                    duration-300 
-                    ease-in-out
-                  "
-                  ></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 group-hover:w-full transition-all duration-300 ease-in-out"></span>
                 </Link>
               </li>
             ))}
 
-            {/* Cart with Increased Margin */}
+            {/* Cart Icon */}
             <li className="nav-item relative md:ml-8">
               <Link
                 to="/cart"
-                className="
-                  text-gray-800 
-                  hover:text-blue-600 
-                  transition-colors 
-                  duration-300 
-                  relative 
-                  block 
-                  group
-                "
+                className="text-gray-800 hover:text-teal-600 transition-colors duration-300 relative block group"
               >
-                <i
-                  className="
-                  fa-solid 
-                  fa-cart-shopping 
-                  text-2xl 
-                  md:text-xl 
-                  relative 
-                  transition-transform 
-                  duration-300 
-                  group-hover:scale-110
-                "
-                >
+                <i className="fa-solid fa-cart-shopping text-2xl md:text-xl relative transition-transform duration-300 group-hover:scale-110">
                   {cartItems.length > 0 && (
-                    <span
-                      className="
-                      absolute 
-                      -top-2 
-                      -right-2 
-                      bg-red-500 
-                      text-white 
-                      text-xs 
-                      font-bold 
-                      rounded-full 
-                      h-5 
-                      w-5 
-                      flex 
-                      items-center 
-                      justify-center
-                    "
-                    >
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                       {cartItems.length}
                     </span>
                   )}
@@ -169,20 +98,18 @@ const Header = () => {
               </Link>
             </li>
 
-            {/* Login with Increased Margin */}
+            {/* Welcome Message */}
+            {isLoggedIn && (
+              <li className="nav-item">
+                <span className="text-gray-700 font-semibold">
+                  Welcome, {username}
+                </span>
+              </li>
+            )}
+
+            {/* Login/Logout Button */}
             <li className="nav-item md:ml-8">
-              <Link to="/login" className="block group">
-                <div
-                  className="
-                  transition-transform 
-                  duration-300 
-                  group-hover:scale-105
-                  mt-3
-                "
-                >
-                  <Login />
-                </div>
-              </Link>
+              <Login />
             </li>
           </ul>
         </nav>

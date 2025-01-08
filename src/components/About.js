@@ -72,7 +72,7 @@ const About = () => {
 
       {/* Mission Section */}
       <div className="mt-16 max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-teal-600 text-center mb-6">
+        <h2 className="text-3xl font-bold text-black text-center mb-6">
           Our Mission
         </h2>
         <p className="text-gray-700 text-lg text-center">
@@ -84,7 +84,7 @@ const About = () => {
 
       {/* Social Links Section */}
       <div className="mt-16 text-center">
-        <h2 className="text-2xl font-bold text-teal-600 mb-4">
+        <h2 className="text-2xl font-bold text-black mb-4">
           Connect with Us
         </h2>
         <div className="flex justify-center space-x-6">
