@@ -1,6 +1,7 @@
 import { CDN_URL } from "../utils/constants";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
@@ -15,35 +16,42 @@ const RestaurantCard = (props) => {
   } = resData?.info;
 
   return (
-    <div className="card w-[240px] h-[295px] flex flex-col rounded-lg shadow-xl bg-white p-2.5 m-5 cursor-pointer hover:scale-105 transition-transform relative">
+    <motion.div
+      className="card w-[240px] h-[295px] flex flex-col rounded-lg shadow-xl bg-white p-2.5 m-5 cursor-pointer transition-transform relative"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
       {/* Top-right rating badge */}
-      <div
-        className={`absolute right-2.7 px-2 py-0.5 rounded-tl-lg  text-sm font-medium flex items-center shadow-md ${
-          avgRatingString < 4
-            ? "bg-red-600 text-white"
-            : "bg-green-600 text-white"
-        }`}
-      >
-        {avgRatingString}
-        <FontAwesomeIcon icon={faStar} className="ml-1.5 text-xs" />
+      <div className="absolute top-2.4 right-2.5">
+        <div
+          className={`px-2 rounded-md py-0.5 text-sm font-medium shadow-md flex items-center ${
+            avgRatingString < 4
+              ? "bg-red-600 text-white"
+              : "bg-green-600 text-white"
+          }`}
+        >
+          {avgRatingString}
+          <FontAwesomeIcon icon={faStar} className="ml-1.5 text-xs " />
+        </div>
       </div>
 
       {/* Image */}
-      <img
-        className="w-full h-[150px] object-cover rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+      <motion.img
+        className="w-full h-[150px] object-cover rounded-lg transition-transform duration-300 ease-in-out "
         src={CDN_URL + cloudinaryImageId}
         alt={name}
+        whileHover={{ scale: 1.05 }}
       />
 
       {/* Details */}
       <div className="mt-2 flex flex-col flex-grow">
-        <h3 className="font-bold text-lg whitespace-nowrap overflow-hidden">
+        <h3 className="font-bold text-base whitespace-nowrap overflow-hidden text-gray-600">
           {name}
         </h3>
-        <h5 className="font-light whitespace-nowrap overflow-hidden text-ellipsis text-sm text-gray-800 mt-0.5">
+        <h5 className="font-light whitespace-nowrap overflow-hidden text-ellipsis text-xs text-gray-800 mt-1.5">
           {cuisines.join(", ")}
         </h5>
-        <h5 className="font- text-sm whitespace-nowrap overflow-hidden text-ellipsis mt-2 flex items-center">
+        <h5 className="text-xs whitespace-nowrap overflow-hidden text-ellipsis mt-2 flex items-center">
           {areaName}
         </h5>
 
@@ -89,7 +97,7 @@ const RestaurantCard = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
