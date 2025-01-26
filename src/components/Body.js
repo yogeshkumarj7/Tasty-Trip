@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import RestaurantCard from "./RestaurantCard";
 import { RES_API_URL } from "../utils/constants";
-import { Link } from "react-router-dom"; // Ensure this import is present
+import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
@@ -28,7 +29,6 @@ const Body = () => {
       setresList(restaurants);
       setSearchedResList(restaurants);
 
-      // Extract unique cuisines
       const cuisines = [
         ...new Set(
           restaurants
@@ -69,14 +69,12 @@ const Body = () => {
   const applyFilters = (search, cuisine) => {
     let filteredList = resList;
 
-    // Apply search filter
     if (search) {
       filteredList = filteredList.filter((res) =>
         res.info.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // Apply cuisine filter
     if (cuisine) {
       filteredList = filteredList.filter((res) =>
         res.info.cuisines.includes(cuisine)
@@ -153,8 +151,9 @@ const Body = () => {
     </div>
   ) : (
     <div className="p-4 max-w-7xl mx-auto">
+      {/* Search and sort section */}
       <div className="mb-6 bg-white shadow-md rounded-lg p-4 mt-5">
-        <div className="flex flex-wrap  items-center space-x-4 space-y-2">
+        <div className="flex flex-wrap items-center justify-between space-x-4 space-y-2">
           <input
             type="text"
             placeholder="Search restaurants..."
@@ -162,61 +161,69 @@ const Body = () => {
             onChange={handleSearch}
             className="flex-grow px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
           />
-          <select
-            value={cuisineFilter}
-            onChange={handleCuisineFilter}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
-          >
-            <option value="">All Cuisines</option>
-            {uniqueCuisines.map((cuisine) => (
-              <option key={cuisine} value={cuisine}>
-                {cuisine}
-              </option>
-            ))}
-          </select>
-          <select
-            value={sortOption}
-            onChange={(e) => handleSort(e.target.value)}
-            className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300"
-          >
-            <option value="">Sort By</option>
-            <option value="name-asc">Name (A-Z)</option>
-            <option value="name-desc">Name (Z-A)</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating-low">Rating: Low to High</option>
-            <option value="rating-high">Rating: High to Low</option>
-          </select>
-          {(searchText || sortOption || cuisineFilter) && (
-            <button
-              onClick={handleReset}
-              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+
+          <div className="flex items-center space-x-4">
+            <select
+              value={cuisineFilter}
+              onChange={handleCuisineFilter}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300 w-full sm:w-auto"
             >
-              Reset
-            </button>
-          )}
-        </div>
-        <div className="text-right text-sm text-gray-500 mt-2">
-          {searchedResList.length} restaurants found
+              <option value="">All Cuisines</option>
+              {uniqueCuisines.map((cuisine) => (
+                <option key={cuisine} value={cuisine}>
+                  {cuisine}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={sortOption}
+              onChange={(e) => handleSort(e.target.value)}
+              className="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-300 w-full sm:w-auto"
+            >
+              <option value="">Sort By</option>
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating-low">Rating: Low to High</option>
+              <option value="rating-high">Rating: High to Low</option>
+            </select>
+
+            {(searchText || sortOption || cuisineFilter) && (
+              <button
+                onClick={handleReset}
+                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+              >
+                Reset
+              </button>
+            )}
+          </div>
+
+          {/* <div className="text-right text-sm text-gray-500 mt-2">
+            {searchedResList.length} restaurants found
+          </div> */}
         </div>
       </div>
-
+      {/* Restaurant List */}
       {searchedResList.length === 0 ? (
         <div className="text-center bg-white shadow-md rounded-lg p-8">
           <p className="text-2xl text-gray-700">No Restaurants Found 🍽️</p>
           <p className="text-gray-500 mt-2">Try a different search or filter</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {searchedResList.map((Restaurant) => (
-            <Link
-              to={"/restaurant/" + Restaurant.info.id}
+            <motion.div
               key={Restaurant.info.id}
+              className="transform transition-transform duration-300 hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="transform transition-transform duration-300 hover:scale-105">
+              <Link to={"/restaurant/" + Restaurant.info.id}>
                 <RestaurantCard resData={Restaurant} />
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
       )}
