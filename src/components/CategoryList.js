@@ -66,12 +66,11 @@ const CategoryList = ({ items }) => {
             </p>
           </div>
 
-          <div className="w-full md:w-40 h-40 relative flex-shrink-0">
+          <div className="w-full md:w-40 h-40 relative">
             <motion.img
               src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/${item.card.info.imageId}`}
               alt={item?.card?.info?.name || "Food item"}
               className="w-full h-full rounded-lg object-cover shadow-md"
-              whileHover={{ scale: 1.05 }}
             />
 
             <motion.button
