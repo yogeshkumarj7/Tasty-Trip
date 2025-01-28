@@ -199,10 +199,6 @@ const Body = () => {
               </button>
             )}
           </div>
-
-          {/* <div className="text-right text-sm text-gray-500 mt-2">
-            {searchedResList.length} restaurants found
-          </div> */}
         </div>
       </div>
       {/* Restaurant List */}
