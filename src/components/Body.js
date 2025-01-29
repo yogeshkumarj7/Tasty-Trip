@@ -4,14 +4,21 @@ import RestaurantCard from "./RestaurantCard";
 import { RES_API_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurantFilters from "../utils/useRestaurantFilters";
 
 const Body = () => {
-  const [resList, setresList] = useState([]);
-  const [searchedResList, setSearchedResList] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [sortOption, setSortOption] = useState("");
-  const [cuisineFilter, setCuisineFilter] = useState("");
-  const [uniqueCuisines, setUniqueCuisines] = useState([]);
+  const [resList, setResList] = useState([]);
+  const {
+    searchedResList,
+    searchText,
+    sortOption,
+    cuisineFilter,
+    uniqueCuisines,
+    handleSearch,
+    handleCuisineFilter,
+    handleSort,
+    handleReset,
+  } = useRestaurantFilters(resList);
 
   useEffect(() => {
     fetchData();
@@ -26,17 +33,7 @@ const Body = () => {
         jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
 
-      setresList(restaurants);
-      setSearchedResList(restaurants);
-
-      const cuisines = [
-        ...new Set(
-          restaurants
-            .flatMap((res) => res.info.cuisines || [])
-            .filter((cuisine) => cuisine)
-        ),
-      ].sort();
-      setUniqueCuisines(cuisines);
+      setResList(restaurants);
     } catch (error) {
       console.error("Error fetching restaurant data:", error);
     }
@@ -54,104 +51,12 @@ const Body = () => {
     );
   }
 
-  const handleSearch = (e) => {
-    const searchValue = e.target.value;
-    setSearchText(searchValue);
-    applyFilters(searchValue, cuisineFilter);
-  };
-
-  const handleCuisineFilter = (e) => {
-    const selectedCuisine = e.target.value;
-    setCuisineFilter(selectedCuisine);
-    applyFilters(searchText, selectedCuisine);
-  };
-
-  const applyFilters = (search, cuisine) => {
-    let filteredList = resList;
-
-    if (search) {
-      filteredList = filteredList.filter((res) =>
-        res.info.name.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    if (cuisine) {
-      filteredList = filteredList.filter((res) =>
-        res.info.cuisines.includes(cuisine)
-      );
-    }
-
-    setSearchedResList(filteredList);
-  };
-
-  const handleSort = (option) => {
-    setSortOption(option);
-    let sortedList = [...searchedResList];
-
-    switch (option) {
-      case "name-asc":
-        sortedList.sort((a, b) => a.info.name.localeCompare(b.info.name));
-        break;
-      case "name-desc":
-        sortedList.sort((a, b) => b.info.name.localeCompare(a.info.name));
-        break;
-      case "price-low":
-        sortedList.sort((a, b) => {
-          const priceA = a.info.costForTwo
-            ? parseInt(a.info.costForTwo.replace(/[^\d]/g, ""))
-            : 0;
-          const priceB = b.info.costForTwo
-            ? parseInt(b.info.costForTwo.replace(/[^\d]/g, ""))
-            : 0;
-          return priceA - priceB;
-        });
-        break;
-      case "price-high":
-        sortedList.sort((a, b) => {
-          const priceA = a.info.costForTwo
-            ? parseInt(a.info.costForTwo.replace(/[^\d]/g, ""))
-            : 0;
-          const priceB = b.info.costForTwo
-            ? parseInt(b.info.costForTwo.replace(/[^\d]/g, ""))
-            : 0;
-          return priceB - priceA;
-        });
-        break;
-      case "rating-low":
-        sortedList.sort(
-          (a, b) =>
-            parseFloat(a.info.avgRatingString) -
-            parseFloat(b.info.avgRatingString)
-        );
-        break;
-      case "rating-high":
-        sortedList.sort(
-          (a, b) =>
-            parseFloat(b.info.avgRatingString) -
-            parseFloat(a.info.avgRatingString)
-        );
-        break;
-      default:
-        sortedList = [...resList];
-    }
-
-    setSearchedResList(sortedList);
-  };
-
-  const handleReset = () => {
-    setSearchedResList(resList);
-    setSearchText("");
-    setSortOption("");
-    setCuisineFilter("");
-  };
-
   return resList.length === 0 ? (
     <div className="flex justify-center items-center h-screen">
       <div className="animate-pulse text-xl text-gray-600">Loading...</div>
     </div>
   ) : (
     <div className="p-4 max-w-7xl mx-auto">
-      {/* Search and sort section */}
       <div className="mb-6 bg-white shadow-md rounded-lg p-4 mt-5">
         <div className="flex flex-wrap items-center justify-between space-x-4 space-y-2">
           <input
@@ -201,7 +106,7 @@ const Body = () => {
           </div>
         </div>
       </div>
-      {/* Restaurant List */}
+
       {searchedResList.length === 0 ? (
         <div className="text-center bg-white shadow-md rounded-lg p-8">
           <p className="text-2xl text-gray-700">No Restaurants Found 🍽️</p>
@@ -212,8 +117,8 @@ const Body = () => {
           {searchedResList.map((Restaurant) => (
             <motion.div
               key={Restaurant.info.id}
-              className="transform transition-transform duration-300 hover:scale-105"
-              whileHover={{ scale: 1.05 }}
+              className="transform transition-transform duration-300"
+              whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.95 }}
             >
               <Link to={"/restaurant/" + Restaurant.info.id}>
