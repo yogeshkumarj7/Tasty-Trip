@@ -46,7 +46,7 @@ const RestaurantCard = (props) => {
       {/* Details */}
       <div className="mt-2 flex flex-col flex-grow">
         <h3 className="font-bold text-base whitespace-nowrap overflow-hidden text-gray-600">
-          {name}
+          {name.length > 23 ? `${name.substring(0, 24)}...` : name}
         </h3>
         <h5 className="font-light whitespace-nowrap overflow-hidden text-ellipsis text-xs text-gray-800 mt-1.5">
           {cuisines.join(", ")}
