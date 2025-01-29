@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import Payment from "./components/Payment";
 import Developer from "./components/Developer";
+import SignupForm from "./components/SignupForm";
 
 const App = () => {
   return (
@@ -63,6 +64,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/developer",
         element: <Developer />,
+      },
+      {
+        path: "/signup",
+        element: <SignupForm />,
       },
     ],
     errorElement: <Error />,
