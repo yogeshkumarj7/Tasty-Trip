@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../utils/authSlice"; 
+import { logout } from "../utils/authSlice";
 
 const Login = () => {
   const { isLoggedIn } = useSelector((state) => state.auth);
