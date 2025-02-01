@@ -127,7 +127,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import TRIP from "../../images/TRIP.png";
-import Login from "./Login";
+import Login from "./LoginSignup";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
