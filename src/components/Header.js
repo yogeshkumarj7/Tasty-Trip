@@ -75,11 +75,11 @@ const Header = () => {
           `}
         >
           <ul className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-12 items-center w-full md:w-auto h-full md:h-auto justify-center md:justify-end p-8 md:p-0 relative mr-5">
-            
             {/* Navigation Items */}
             {["Home", "About", "Contact"].map((item) => {
-              // CHANGE: Check if the current path matches the nav item
-              const isActive = location.pathname === (item === "Home" ? "/" : `/${item.toLowerCase()}`);
+              const isActive =
+                location.pathname ===
+                (item === "Home" ? "/" : `/${item.toLowerCase()}`);
 
               return (
                 <li key={item} className="nav-item">
@@ -92,7 +92,7 @@ const Header = () => {
                     <span
                       className={`absolute -bottom-1 left-0 h-0.5 bg-teal-600 transition-all duration-300 ease-in-out ${
                         isActive ? "w-full" : "w-0 group-hover:w-full"
-                      }`} 
+                      }`}
                     ></span>
                   </Link>
                 </li>
