@@ -75,18 +75,29 @@ const Header = () => {
           `}
         >
           <ul className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-12 items-center w-full md:w-auto h-full md:h-auto justify-center md:justify-end p-8 md:p-0 relative mr-5">
+            
             {/* Navigation Items */}
-            {["Home", "About", "Contact"].map((item) => (
-              <li key={item} className="nav-item">
-                <Link
-                  to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="text-gray-800 relative group font-semibold text-xl md:text-base transition-all duration-300 ease-in-out hover:text-teal-600"
-                >
-                  {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-teal-600 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-                </Link>
-              </li>
-            ))}
+            {["Home", "About", "Contact"].map((item) => {
+              // CHANGE: Check if the current path matches the nav item
+              const isActive = location.pathname === (item === "Home" ? "/" : `/${item.toLowerCase()}`);
+
+              return (
+                <li key={item} className="nav-item">
+                  <Link
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    className={`text-gray-800 relative group font-semibold text-xl md:text-base transition-all duration-300 ease-in-out hover:text-teal-600
+                    ${isActive ? "text-teal-600 font-bold" : ""}`} // CHANGE: Apply active styles
+                  >
+                    {item}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-0.5 bg-teal-600 transition-all duration-300 ease-in-out ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`} // CHANGE: Ensure active underline is always visible
+                    ></span>
+                  </Link>
+                </li>
+              );
+            })}
 
             {/* Cart Icon */}
             <li className="nav-item relative md:ml-8">
