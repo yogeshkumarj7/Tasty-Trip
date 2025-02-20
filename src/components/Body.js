@@ -128,7 +128,6 @@ const Body = () => {
           </motion.div>
         ))}
       </div>
-      {/* )} */}
     </div>
   );
 };
