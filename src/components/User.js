@@ -31,7 +31,6 @@ const User = () => {
       )}
       <h3 className="text-xl font-bold text-teal-700 mb-2">{name}</h3>
       <p className="text-gray-600 mb-2">{location}</p>
-      {/* <p className="text-orange-500">contact: yogesh@37</p> */}
     </div>
   );
 };
