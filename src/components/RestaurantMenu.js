@@ -55,7 +55,7 @@ const RestaurantMenu = () => {
 
   return (
     <motion.div
-      className={`rounded-lg shadow-lg p-4 md:p-8 text-center min-h-screen relative transition-colors duration-300 ${
+      className={`shadow-lg p-4 md:p-8 text-center min-h-screen relative transition-colors duration-300 ${
         isDarkMode ? "bg-gray-900 text-gray-200" : "bg-white text-gray-800"
       }`}
       initial={{ opacity: 0 }}
