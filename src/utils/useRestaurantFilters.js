@@ -10,7 +10,6 @@ const useRestaurantFilters = (initialRestaurants = []) => {
 
   useEffect(() => {
     if (initialRestaurants.length > 0) {
-      // Extract unique cuisines when restaurants data changes
       const cuisines = [
         ...new Set(
           initialRestaurants
