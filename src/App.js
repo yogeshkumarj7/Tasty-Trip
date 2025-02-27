@@ -60,18 +60,10 @@ const AppLayout = () => {
   );
 };
 
-const App = () => {
-  return (
-    <Provider store={Store}>
-      <AppLayout />
-    </Provider>
-  );
-};
-
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <AppLayout />,
     children: [
       {
         path: "/",
@@ -110,7 +102,15 @@ const appRouter = createBrowserRouter([
   },
 ]);
 
+const App = () => {
+  return (
+    <Provider store={Store}>
+      <RouterProvider router={appRouter} />
+    </Provider>
+  );
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(<App />);
 
 export default App;

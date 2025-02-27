@@ -29,6 +29,7 @@ const Header = () => {
 
   const handleThemeToggle = () => {
     dispatch(toggleTheme());
+    localStorage.setItem("isDarkMode", !isDarkMode);
   };
 
   return (
@@ -68,7 +69,10 @@ const Header = () => {
             {isDarkMode ? (
               <Sun size={24} className="transition-transform hover:rotate-12" />
             ) : (
-              <Moon size={24} className="transition-transform hover:rotate-12" />
+              <Moon
+                size={24}
+                className="transition-transform hover:rotate-12"
+              />
             )}
           </button>
           <AnimatePresence>
@@ -164,7 +168,10 @@ const Header = () => {
                 aria-label="Toggle Theme"
               >
                 {isDarkMode ? (
-                  <Sun size={20} className="transition-transform hover:rotate-12" />
+                  <Sun
+                    size={20}
+                    className="transition-transform hover:rotate-12"
+                  />
                 ) : (
                   <Moon
                     size={20}
