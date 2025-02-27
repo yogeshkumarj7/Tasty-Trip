@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 
 const RestaurantCard = (props) => {
-  const { resData } = props;
+  const { resData, isDarkMode } = props;
   const {
     cloudinaryImageId,
     name,
@@ -17,11 +17,12 @@ const RestaurantCard = (props) => {
 
   return (
     <motion.div
-      className="card w-[240px] h-[295px] flex flex-col rounded-lg shadow-xl bg-white p-2.5 m-5 cursor-pointer transition-transform relative"
+      className={`card w-[240px] h-[295px] flex flex-col rounded-lg shadow-xl p-2.5 m-5 cursor-pointer transition-transform relative ${
+        isDarkMode ? "bg-gray-800" : "bg-white"
+      }`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      {/* Top-right rating badge */}
       <div className="absolute top-2.4 right-2.5">
         <div
           className={`px-2 rounded-md py-0.5 text-sm font-medium shadow-md flex items-center ${
@@ -31,40 +32,50 @@ const RestaurantCard = (props) => {
           }`}
         >
           {avgRatingString}
-          <FontAwesomeIcon icon={faStar} className="ml-1.5 text-xs " />
+          <FontAwesomeIcon icon={faStar} className="ml-1.5 text-xs" />
         </div>
       </div>
-
-      {/* Image */}
       <motion.img
-        className="w-full h-[150px] object-cover rounded-lg transition-transform duration-300 ease-in-out "
+        className="w-full h-[150px] object-cover rounded-lg transition-transform duration-300 ease-in-out"
         src={CDN_URL + cloudinaryImageId}
         alt={name}
         whileHover={{ scale: 1.05 }}
       />
-
-      {/* Details */}
       <div className="mt-2 flex flex-col flex-grow">
-        <h3 className="font-bold text-base whitespace-nowrap overflow-hidden text-gray-600">
+        <h3
+          className={`font-bold text-base whitespace-nowrap overflow-hidden ${
+            isDarkMode ? "text-gray-200" : "text-gray-600"
+          }`}
+        >
           {name.length > 23 ? `${name.substring(0, 24)}...` : name}
         </h3>
-        <h5 className="font-light whitespace-nowrap overflow-hidden text-ellipsis text-xs text-gray-800 mt-1.5">
+        <h5
+          className={`font-light whitespace-nowrap overflow-hidden text-ellipsis text-xs mt-1.5 ${
+            isDarkMode ? "text-gray-300" : "text-gray-800"
+          }`}
+        >
           {cuisines.join(", ")}
         </h5>
-        <h5 className="text-xs whitespace-nowrap overflow-hidden text-ellipsis mt-2 flex items-center">
+        <h5
+          className={`text-xs whitespace-nowrap overflow-hidden text-ellipsis mt-2 flex items-center ${
+            isDarkMode ? "text-gray-400" : "text-gray-600"
+          }`}
+        >
           {areaName}
         </h5>
-
-        {/* Location and Cost Icons */}
         <div className="flex items-center justify-between mt-4 space-x-1">
-          <div className="flex items-center space-x-1 text-gray-600">
+          <div
+            className={`flex items-center space-x-1 ${
+              isDarkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-4 h-4 mr-1 text-gray-600"
+              className="w-4 h-4 mr-1"
             >
               <path
                 strokeLinecap="round"
@@ -81,7 +92,11 @@ const RestaurantCard = (props) => {
               {sla?.lastMileTravelString ?? "2.0 km"}
             </span>
           </div>
-          <div className="flex items-center space-x-1 text-gray-600">
+          <div
+            className={`flex items-center space-x-1 ${
+              isDarkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

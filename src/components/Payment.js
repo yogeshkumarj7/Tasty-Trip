@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Added Toastify for notifications
-import { useNavigate } from "react-router-dom"; // Import useNavigate to redirect to home
-import { useDispatch } from "react-redux"; // Import useDispatch to use Redux actions
-import { clearCart } from "../utils/cartSlice"; // Import clearCart action
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../utils/cartSlice";
 
 const Payment = () => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
@@ -12,6 +12,7 @@ const Payment = () => {
   const [cvv, setCvv] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
 
   const handlePayment = () => {
     const cardNumberPattern = /^\d{16}$/;
@@ -56,22 +57,47 @@ const Payment = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+    <div
+      className={`flex justify-center items-center min-h-screen p-4 transition-colors duration-300 ${
+        isDarkMode ? "bg-gray-900" : "bg-gray-100"
+      }`}
+    >
       {paymentSuccess ? (
-        <div className="p-8 bg-white shadow-lg rounded-lg max-w-md w-full text-center">
+        <div
+          className={`p-8 shadow-lg rounded-lg max-w-md w-full text-center transition-colors duration-300 ${
+            isDarkMode ? "bg-gray-800 text-gray-200" : "bg-white text-gray-800"
+          }`}
+        >
           <h2 className="text-3xl font-bold mb-6 text-green-600">
             🎉 Payment Successful! 🎉
           </h2>
-          <p className="text-gray-700 mb-4">
+          <p
+            className={`mb-4 ${isDarkMode ? "text-gray-300" : "text-gray-700"}`}
+          >
             Thank you for your payment. You will be redirected shortly.
           </p>
         </div>
       ) : (
-        <div className="p-8 bg-white shadow-lg rounded-lg max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-6 text-center">Payment</h2>
+        <div
+          className={`p-8 shadow-lg rounded-lg max-w-md w-full transition-colors duration-300 ${
+            isDarkMode ? "bg-gray-800" : "bg-white"
+          }`}
+        >
+          <h2
+            className={`text-2xl font-bold mb-6 text-center ${
+              isDarkMode ? "text-gray-200" : "text-gray-800"
+            }`}
+          >
+            Payment
+          </h2>
           <form className="space-y-4">
             <div>
-              <label htmlFor="cardNumber" className="block text-gray-700">
+              <label
+                htmlFor="cardNumber"
+                className={`block ${
+                  isDarkMode ? "text-gray-300" : "text-gray-700"
+                }`}
+              >
                 Card Number
               </label>
               <input
@@ -79,7 +105,11 @@ const Payment = () => {
                 id="cardNumber"
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors duration-300 ${
+                  isDarkMode
+                    ? "bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400"
+                    : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-green-500"
+                }`}
                 placeholder="1234 5678 9012 3456"
                 autoComplete="off"
                 maxLength="16"
@@ -87,7 +117,12 @@ const Payment = () => {
             </div>
             <div className="flex space-x-4">
               <div>
-                <label htmlFor="expiry" className="block text-gray-700">
+                <label
+                  htmlFor="expiry"
+                  className={`block ${
+                    isDarkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
                   Expiry Date
                 </label>
                 <input
@@ -95,14 +130,23 @@ const Payment = () => {
                   id="expiry"
                   value={expiry}
                   onChange={(e) => setExpiry(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors duration-300 ${
+                    isDarkMode
+                      ? "bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400"
+                      : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-green-500"
+                  }`}
                   placeholder="MM/YY"
                   autoComplete="off"
                   maxLength="5"
                 />
               </div>
               <div>
-                <label htmlFor="cvv" className="block text-gray-700">
+                <label
+                  htmlFor="cvv"
+                  className={`block ${
+                    isDarkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
                   CVV
                 </label>
                 <input
@@ -110,7 +154,11 @@ const Payment = () => {
                   id="cvv"
                   value={cvv}
                   onChange={(e) => setCvv(e.target.value)}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400 transition-colors duration-300 ${
+                    isDarkMode
+                      ? "bg-gray-700 border-gray-600 text-gray-200 placeholder-gray-400"
+                      : "bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-green-500"
+                  }`}
                   placeholder="123"
                   autoComplete="off"
                   maxLength="3"
@@ -119,7 +167,11 @@ const Payment = () => {
             </div>
             <button
               type="button"
-              className="w-full bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition mt-4"
+              className={`w-full py-3 rounded-lg transition mt-4 ${
+                isDarkMode
+                  ? "bg-amber-500 hover:bg-amber-600 text-gray-900"
+                  : "bg-teal-500 hover:bg-teal-600 text-white"
+              }`}
               onClick={handlePayment}
             >
               Pay Now
@@ -138,6 +190,7 @@ const Payment = () => {
         draggable
         pauseOnHover
         className="mt-20"
+        theme={isDarkMode ? "dark" : "light"}
       />
     </div>
   );
